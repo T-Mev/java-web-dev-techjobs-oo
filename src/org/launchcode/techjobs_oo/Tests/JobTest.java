@@ -24,8 +24,9 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-        assertEquals(1,job1.getId());
-        assertEquals(2,job2.getId());
+
+        assertFalse(job1.getId() == job2.getId());
+        assertTrue(job1.getId() + 1 == job2.getId());
     }
 
     @Test
@@ -46,4 +47,15 @@ public class JobTest {
     public void testJobsForEquality() {
         assertFalse(job3.equals(job4));
     }
+
+    @Test
+    public void toStringWorksCorrectly() {
+        assertEquals("ID: " + job3.getId() +
+                "\nName: " + job3.getName() +
+                "\nEmployer: " + job3.getEmployer() +
+                "\nLocation: " + job3.getLocation() +
+                "\nPosition Type: " + job3.getPositionType() +
+                "\nCore Competency: " + job3.getCoreCompetency(), job3.toString());
+    }
+
 }

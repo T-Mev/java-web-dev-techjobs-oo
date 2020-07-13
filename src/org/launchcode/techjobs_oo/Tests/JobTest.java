@@ -8,10 +8,7 @@ import static org.junit.Assert.*;
 
 public class JobTest {
 
-    Job job1;
-    Job job2;
-    Job job3;
-    Job job4;
+    Job job1, job2, job3, job4, job5, job6;
     @Before
     public void createJobObjects() {
         job1 = new Job();
@@ -20,13 +17,17 @@ public class JobTest {
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
         job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        job5 = new Job("Ice cream taster", new Employer(""), new Location("Home"),
+                new PositionType("UX"), new CoreCompetency("Taste"));
+        job6 = new Job("", new Employer(""), new Location(""),
+                new PositionType(""), new CoreCompetency(""));
     }
 
     @Test
     public void testSettingJobId() {
 
-        assertFalse(job1.getId() == job2.getId());
-        assertTrue(job1.getId() + 1 == job2.getId());
+        assertNotEquals(job1.getId(), job2.getId());
+        assertEquals(job1.getId() + 1, job2.getId());
     }
 
     @Test
@@ -45,17 +46,27 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality() {
-        assertFalse(job3.equals(job4));
+        assertNotEquals(job3, job4);
     }
 
     @Test
     public void toStringWorksCorrectly() {
-        assertEquals("ID: " + job3.getId() +
+        assertEquals("\nID: " + job3.getId() +
                 "\nName: " + job3.getName() +
                 "\nEmployer: " + job3.getEmployer() +
                 "\nLocation: " + job3.getLocation() +
                 "\nPosition Type: " + job3.getPositionType() +
-                "\nCore Competency: " + job3.getCoreCompetency(), job3.toString());
+                "\nCore Competency: " + job3.getCoreCompetency() + "\n", job3.toString());
+    }
+
+    @Test
+    public void toStringEmptyFieldsWorksCorrectly() {
+        assertEquals("Data not available", (!job5.getEmployer().getValue().equals("") ? job5.getEmployer():"Data not available"));
+    }
+
+    @Test
+    public void toStringObjectOnlyHasIdField() {
+        assertEquals("OOPS! This job does not seem to exist.", job6.toString());
     }
 
 }

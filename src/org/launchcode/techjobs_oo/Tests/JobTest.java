@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 public class JobTest {
 
     Job job1, job2, job3, job4, job5, job6;
+
     @Before
     public void createJobObjects() {
         job1 = new Job();
@@ -25,7 +26,6 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-
         assertNotEquals(job1.getId(), job2.getId());
         assertEquals(job1.getId() + 1, job2.getId());
     }

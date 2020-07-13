@@ -108,4 +108,5 @@ public class Job {
                     "\nCore Competency: " + (!coreCompetency.getValue().equals("") ? coreCompetency:"Data not available") + "\n";
         }
     }
+
 }

@@ -50,6 +50,14 @@ public class JobTest {
     }
 
     @Test
+    public void toStringBlankLineBeforeAndAfterObject() {
+        int length = job3.toString().length();
+
+        assertEquals("\n", job3.toString().substring(0, 1));
+        assertEquals("\n", job3.toString().substring(length - 1, length));
+    }
+
+    @Test
     public void toStringWorksCorrectly() {
         assertEquals("\nID: " + job3.getId() +
                 "\nName: " + job3.getName() +
@@ -60,12 +68,12 @@ public class JobTest {
     }
 
     @Test
-    public void toStringEmptyFieldsWorksCorrectly() {
+    public void toStringHasEmptyField() {
         assertEquals("Data not available", (!job5.getEmployer().getValue().equals("") ? job5.getEmployer():"Data not available"));
     }
 
     @Test
-    public void toStringObjectOnlyHasIdField() {
+    public void toStringOnlyHasIdField() {
         assertEquals("OOPS! This job does not seem to exist.", job6.toString());
     }
 
